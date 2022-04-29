@@ -10,7 +10,7 @@ import React from 'react';
 
 //优化文件体积
 let Home = React.lazy(()=>import("page/home/index"))
-
+let codeLab = React.lazy(()=>import("page/codeLab/index"))
 let NotFound = React.lazy(() => import("page/notFonund/index"))
 
 
@@ -22,6 +22,13 @@ const Configs = [
         exact: true,
         component: Home,
         role: 'user',       // 当前路由需要的角色权限
+        backUrl: '/login'   // 不满足权限跳转的路由
+    },
+    {
+        path: '/codeLab',
+        exact: true,
+        component: codeLab,
+        role: '',       // 当前路由需要的角色权限
         backUrl: '/login'   // 不满足权限跳转的路由
     },
     {
