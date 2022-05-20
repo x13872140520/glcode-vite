@@ -7,23 +7,36 @@
  * @FilePath: /mac/vite/vite-dmeo/src/page/home/index.js
  */
 
-import React from "react";
+import React,{useEffect,useState} from "react";
 import "./index.scss"
 import { Button} from "antd"
 import message from "@/components/messageBox"
 const codeLab = () => {
-
-    
-
-    
     const handleHomeClick = () => {
     console.log(1)
         message.success({context:222})
     }
-    
+    useEffect(()=>{
+      console.log('codemi',CodeMirror)
+        var myCodeMirror = CodeMirror(document.getElementById('codeLab'),{
+            value: "# version: Python3\n",
+            mode:  "javascript",
+            // styleActiveLine: true,
+            lineNumbers: true,
+            indentUnit:'8',
+            tabSize:'6',
+            theme:'xq-light'
+          });
+         
+         
+         
+    },[])
     return (
         <div>
-            <div  className="header">12341234</div>
+            <div  className="header">
+                <img src="/src/logo.svg" alt="" />
+            </div>
+            <div id="codeLab"></div>
         </div>
     )
     
