@@ -1,0 +1,25 @@
+.containerHeadHome{
+width: 100%;
+height: 40px;
+        display:flex;
+    align-items: center;
+    padding: 0.06944rem;
+    color: #999;
+    font-size: .05556rem;
+
+    background: #ecf1f7;
+  li{
+
+  margin-left: 30px;
+  cursor: pointer;
+}
+.containerHeadfitstLi{
+    background-color: #10df9f;
+    display: flex;
+        border-radius:14%;
+    padding: 5px;
+
+    align-items: center;
+    outline: none;
+}
+}

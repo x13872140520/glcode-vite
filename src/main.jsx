@@ -4,10 +4,10 @@ import App from './App'
 import './index.css'
 import 'babel-polyfill';
 import 'antd/dist/antd.css';
-
-
+import {enableMapSet} from "immer"
+enableMapSet()
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+
     <App />
-  </React.StrictMode>
+
 )

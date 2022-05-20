@@ -1,0 +1,51 @@
+*{
+list-style: none;
+padding: 0;
+margin: 0;
+
+}
+ul{
+
+margin-bottom:  0 !important;
+}
+.HeadContent{
+    display: flex;
+width: 100%;
+min-height: 56px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    color: #d4e5fc;
+    line-height: 22px;
+    font-weight: 500;
+    z-index: 100;
+    background: linear-gradient(270deg,#0181ef,#0064f0);
+    .HeadContentFlex{
+
+    display: flex;
+    align-items: center;
+.HeadContentFlexLi{
+position: relative;
+width: 70px;
+height: 100%;
+margin-bottom: 0 !important;
+line-height:70px;
+margin-right:7%;
+.HeadContentRelative{
+z-index: 999;
+position: absolute;
+left: 0;
+top: 70px;
+}
+}
+p{
+width: 70px;
+height: 100%;
+margin-bottom: 0 !important;
+line-height:70px;
+margin-right:7%;
+
+}
+
+}
+}
