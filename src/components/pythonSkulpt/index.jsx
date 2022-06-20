@@ -13,7 +13,7 @@ import ovhidden from 'public/img/ovhidden.svg'
 import ovhiopen from 'public/img/ovhiopen.svg'
 import clearing from 'public/img/clearing.svg'
 import { useSetState } from "ahooks"
-import {onedemo,twodemo,threedemo} from "../../redux-toolkit"
+// import {onedemo,twodemo,threedemo} from "../../redux-toolkit"
 
 const PythonSkulpt = () => {
 
