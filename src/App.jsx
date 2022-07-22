@@ -6,64 +6,43 @@
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /mac/vite/vite-dmeo/src/App.jsx
  */
-import { useEffect, useState,useMemo } from 'react'
+import { useEffect, useState, useMemo } from "react";
 
-import './App.css'
-import './App.scss'
+import "./App.css";
+import "./App.scss";
 
-import {getListAPI} from 'utils/api';
-import config  from "route/config.jsx"
+import { getListAPI } from "utils/api";
+import config from "route/config.jsx";
+import "./test";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import {
- BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from 'react-router-dom'
-
-import {
-  RecoilRoot,
-} from 'recoil';
+import { RecoilRoot } from "recoil";
 
 import HeadContext from "@/components/headContext";
 function App() {
-  const [count, setCount] = useState(0)
-  
+  const [count, setCount] = useState(0);
+
   useEffect(() => {
-    
-    
     const newdemo = () => {
-
-      
       getListAPI().then((res) => {
-      
-        console.log(res.data, '11')
-      })
-    
-    }
-    newdemo()
-
-  
-   
-  }, [])
-  
-
-
+        console.log(res.data, "11");
+      });
+    };
+    newdemo();
+  }, []);
 
   return (
     <RecoilRoot>
       <HeadContext></HeadContext>
       <Router>
-      <Switch>
-        {config.map(
-          ({path, component, ...routes}) => 
-            <Route key={path} path={path} component={component} {...routes}
-            />
-        )}
-      </Switch>
-    </Router>
-  </RecoilRoot>
-  )
+        <Switch>
+          {config.map(({ path, component, ...routes }) => (
+            <Route key={path} path={path} component={component} {...routes} />
+          ))}
+        </Switch>
+      </Router>
+    </RecoilRoot>
+  );
 }
 
-export default App
+export default App;
