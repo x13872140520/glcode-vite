@@ -14,9 +14,9 @@ import message from "@/components/messageBox";
 import CodeMirror from "@/components/codeMirror";
 import PythonSkulpt from "@/components/pythonSkulpt";
 import ContainerHead from "@/components/containerHead";
-import Test from "@/components/test";
 import { ThemeContext } from "recoils/crearContext.jsx";
 import { useSetState } from "ahooks";
+import Test from "@/components/test";
 import DictionAries from "@/components/dictionAries";
 import "./index.scss";
 import { Func } from "utils/static.js";
@@ -61,6 +61,7 @@ const Home = () => {
   return (
     <ThemeContext.Provider value={state}>
       {/* 头部 */}
+      <Test></Test>
       <ContainerHead handleNewClick={handleNewClick}></ContainerHead>
       <div className="layutFLex">
         {/* python字典 */}

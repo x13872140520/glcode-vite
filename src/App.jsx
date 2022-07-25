@@ -13,7 +13,6 @@ import "./App.scss";
 
 import { getListAPI } from "utils/api";
 import config from "route/config.jsx";
-import "./test";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import { RecoilRoot } from "recoil";
