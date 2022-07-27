@@ -2,7 +2,7 @@
  * @Author: error: git config user.name && git config user.email & please set dead value or install git
  * @Date: 2022-07-25 11:20:39
  * @LastEditors: error: git config user.name && git config user.email & please set dead value or install git
- * @LastEditTime: 2022-07-26 08:46:28
+ * @LastEditTime: 2022-07-27 14:34:20
  * @FilePath: /gajumakr/glcode-vite/src/server/pythonServer.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -66,16 +66,40 @@ const HttpProxy = ({ baseUrl } = { baseUrl: '' }) => async ({ url, method, data,
 
 export const getListAPI = createApi({
     reducerPath: "getListAPI",
+
     baseQuery: retry(HttpProxy({
         baseUrl: 'http://localhost:10086/',
     }), {
         maxRetries: 5,
     }),
+    refetchOnFocus: true,       //切屏自动获取
+    refetchOnReconnect: true,  //断网查询
+    tagTypes: ['Post', 'User'],  //根据这里面参数决定是否重新获取
     endpoints: (builder) => ({
 
         getListByName: builder.query({
             query: () => ({ url: '', method: 'get' }),
-        })
+            keepUnusedDataFor: 5,   //指定在订阅者引用计数达到零后数据应在缓存中保留多长时间
+            transformResponse: (response) => {
+                return response
+
+            },
+            // invalidatesTags: ['Post'],
+            //  providesTags: ['Post'],
+        }),
+        // 另外一个接口
+        getOther: builder.query({
+            query: () => ({ url: '/', method: 'post' }),
+            keepUnusedDataFor: 5,   //指定在订阅者引用计数达到零后数据应在缓存中保留多长时间
+            transformResponse: (response) => {
+                return response
+
+            },
+            // invalidatesTags: ['Post'],
+            //  providesTags: ['Post'],
+        }),
+
+
     })
 
 

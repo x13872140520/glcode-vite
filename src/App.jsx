@@ -1,15 +1,15 @@
 /*
  * @Author: your name
  * @Date: 2022-04-22 11:30:19
- * @LastEditTime: 2022-07-25 11:19:14
+ * @LastEditTime: 2022-07-27 09:45:36
  * @LastEditors: error: git config user.name && git config user.email & please set dead value or install git
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /mac/vite/vite-dmeo/src/App.jsx
  */
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState, useMemo } from "react";
 
-import './App.css'
-import './App.scss'
+import "./App.css";
+import "./App.scss";
 
 import config from "route/config.jsx"
 
@@ -54,15 +54,13 @@ function App () {
       <HeadContext></HeadContext>
       <Router>
         <Switch>
-          {config.map(
-            ({ path, component, ...routes }) =>
-              <Route key={path} path={path} component={component} {...routes}
-              />
-          )}
+          {config.map(({ path, component, ...routes }) => (
+            <Route key={path} path={path} component={component} {...routes} />
+          ))}
         </Switch>
       </Router>
     </RecoilRoot>
-  )
+  );
 }
 
-export default App
+export default App;

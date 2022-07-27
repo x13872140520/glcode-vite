@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-05-06 11:02:00
- * @LastEditTime: 2022-07-25 14:48:39
+ * @LastEditTime: 2022-07-27 10:32:28
  * @LastEditors: error: git config user.name && git config user.email & please set dead value or install git
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /gajumakr/glcode-vite/src/components/pythonSkulpt/index.jsx
@@ -16,6 +16,38 @@ import { useSetState } from "ahooks"
 import { onedemo, twodemo, threedemo } from "../../redux-toolkit/counterSlice"
 import { useSelector, useDispatch } from 'react-redux'
 import { useGegetListByNameQuery, getListAPI } from '../../server/pythonServer'
+
+
+
+
+function ComponentOne () {
+    // component subscribes to the data
+    const { data } = getListAPI.endpoints.getListByName.useQuery('/')
+    console.log(data)
+    return <div>...</div>
+}
+
+function ComponentTwo () {
+    // component subscribes to the data
+    const { data } = getListAPI.endpoints.getListByName.useQuery('/')
+    console.log(data)
+    return <div>...</div>
+}
+
+function ComponentThree () {
+    // component subscribes to the data
+    const { data } = getListAPI.endpoints.getListByName.useQuery('/')
+    console.log(data)
+    return <div>...</div>
+}
+
+function ComponentFour () {
+    // component subscribes to the *same* data as ComponentThree,
+    // as it has the same query parameters
+    const { data } = getListAPI.endpoints.getListByName.useQuery('/')
+    console.log(data)
+    return <div>...</div>
+}
 
 const PythonSkulpt = () => {
 
@@ -40,7 +72,7 @@ const PythonSkulpt = () => {
 
 
     }
-    console.log(data, error, isLoading, getListAPI)
+
 
 
 
@@ -61,7 +93,10 @@ const PythonSkulpt = () => {
             <div>
                 1
             </div>
-
+            {/* <ComponentOne></ComponentOne>
+            <ComponentTwo></ComponentTwo>
+            <ComponentThree></ComponentThree>
+            <ComponentFour></ComponentFour> */}
         </div>
 
     )
