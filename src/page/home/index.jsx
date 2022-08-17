@@ -7,7 +7,7 @@
  * @FilePath: /mac/vite/vite-dmeo/src/page/home/index.js
  */
 
-import React, { useMemo, useRef, useEffect } from "react";
+import React, { useMemo, useRef, useEffect, useState } from "react";
 import { Button } from "antd";
 
 import message from "@/components/messageBox";
@@ -19,9 +19,10 @@ import { useSetState } from "ahooks";
 import DictionAries from "@/components/dictionAries";
 import "./index.scss";
 import { Func } from "utils/static.js";
+
 const Home = () => {
   const newRef = useRef(null);
-
+  const [result, setResult] = useState("result");
   const [state, setState] = useSetState({
     hello: "",
     count: 0,
@@ -74,7 +75,15 @@ const Home = () => {
 
           {/* python运行工具 */}
           <div className="layutFLexRightBottom">
-            <PythonSkulpt></PythonSkulpt>
+            <PythonSkulpt result={result}></PythonSkulpt>
+            <div
+              id="myCanvas"
+              style={{
+                width: "500px",
+                height: "300px",
+                border: "3px solid green",
+              }}
+            ></div>
           </div>
         </div>
       </div>

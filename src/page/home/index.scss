@@ -23,3 +23,16 @@ border-bottom: none;
 padding:0 !important;
 }
 
+.layutFLexRightBottom{
+    display: flex;
+    flex-wrap: nowrap;
+    position: absolute;
+    bottom: 0;
+    width: 75%;
+}
+#myCanvas canvas{
+    width: 500px !important;
+    height: 300px !important;
+    position: absolute!important;
+    margin: 0!important;
+}

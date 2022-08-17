@@ -15,9 +15,13 @@ import { createSlice } from '@reduxjs/toolkit'
 export const counterSlice = createSlice({
     name: "counter",
     initialState: {
-        value: 0
+        value: 0,
+        result:'hello python'
     },
     reducers: {
+        changePythonResult: (state, action) => { 
+            state.result = action.payload
+        },
         onedemo: (state) => {
 
             state.value += 1
@@ -31,6 +35,6 @@ export const counterSlice = createSlice({
 
     }
 })
-export const { onedemo, twodemo, threedemo } = counterSlice.actions
+export const { onedemo, twodemo, threedemo,changePythonResult } = counterSlice.actions
 
 export default counterSlice.reducer
