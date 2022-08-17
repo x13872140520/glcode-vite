@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2022-04-22 11:30:19
- * @LastEditTime: 2022-07-27 09:45:36
+ * @LastEditTime: 2022-08-01 10:13:09
  * @LastEditors: error: git config user.name && git config user.email & please set dead value or install git
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /mac/vite/vite-dmeo/src/App.jsx
@@ -17,7 +17,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
 } from 'react-router-dom'
 
 import {

@@ -1,12 +1,12 @@
 /*
  * @Author: your name
  * @Date: 2022-05-06 10:12:26
- * @LastEditTime: 2022-05-13 11:24:35
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2022-08-17 09:43:22
+ * @LastEditors: error: git config user.name && git config user.email & please set dead value or install git
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /gajumakr/glcode-vite/src/components/codeMirror/index.js
  */
-import React, { useRef,useEffect,forwardRef,useImperativeHandle, useState} from "react";
+import React, { useRef, useEffect, forwardRef, useImperativeHandle, useState } from "react";
 import produce from "immer"
 import ReactDOM from 'react-dom'
 import CodeMirror from "codemirror";
@@ -42,58 +42,56 @@ const { TabPane } = Tabs;
 
 
 
-const NewCodeMirror = (props,ref) => {
+const NewCodeMirror = (props, ref) => {
 
     let codeMirror = useRef(null)
-    
+
 
     const [pysc, setScript] = useState([
-     { title: 'pythonscript1', content: '', key: '1',   closable: false, }
+        { title: 'pythonscript1', content: '', key: '1', closable: false, }
     ])
-    const [obj,setobj] = useSetState({
-      activeKey:"1",nameKey:"1"
+    const [obj, setobj] = useSetState({
+        activeKey: "1", nameKey: "1"
     })
+
     
+    const [initCodeMirror,setcodeMirror]=useState(null)
     //父组件调用子组件的事件
-    
 
-    
 
-    
+
+
+
     const handleotn = () => {
-    console.log(2)
+        console.log(2)
     }
     useImperativeHandle(ref, () => ({
-    
+
         handlenew: () => {
-        handleotn()
+            handleotn()
         }
-    
+
     }))
-    
+
     useEffect(() => {
-       
+
         initNewCodeMirror()
-        return () => {
-        
-        
-        }
-  
+   
     }, [obj.activeKey])
-    
-    
-    
-        // 实列化
-    
-    
+
+
+
+    // 实列化
+
+
     const initNewCodeMirror = () => {
-    
-         let   NewCodeMirror = CodeMirror.fromTextArea(codeMirror.current, {
+
+        let NewCodeMirror = CodeMirror.fromTextArea(codeMirror.current, {
             mode: "python",
             theme: "material", // 主题样式
-                firstLineNumber: 1, //行号是几开始
-                firstLine:2,
-            scrollbarStyle:null, //滚动条
+            firstLineNumber: 1, //行号是几开始
+            firstLine: 2,
+            scrollbarStyle: null, //滚动条
             tabSize: 2,  //tab缩紧
             smartIndent: true, // 是否智能缩进
             styleActiveLine: true, // 当前行高亮
@@ -104,113 +102,141 @@ const NewCodeMirror = (props,ref) => {
                 "CodeMirror-lint-markers",
             ],
             lineWrapping: true, // 自动换行
-                matchBrackets: true, // 括号匹配显示
-            autofocus:true, //获取焦点
+            matchBrackets: true, // 括号匹配显示
+            autofocus: true, //获取焦点
             autoCloseBrackets: true, // 输入和退格时成对
-             foldGutter: true,
-             pasteLinesPerSelection: true,
-             autocorrect: true,
-             viewportMargin: 2,
-                
+            foldGutter: true,
+            pasteLinesPerSelection: true,
+            autocorrect: true,
+            viewportMargin: 2,
+          
+
         })
         NewCodeMirror.setOption("value", '# version: Python3')
-       
-        NewCodeMirror.setSize("100vw", "800px")
+
+        NewCodeMirror.setSize("100%", "800px")
+        NewCodeMirror.on("change", e => {
+            console.log(e)
+        })
+        setcodeMirror(NewCodeMirror)
     }
-    
-    
-    
-    
-    
 
-      const tabHandle = (e) => {
 
-          setobj({
-          activeKey:e
-          
-          })
+
+
+
+
+    const tabHandle = (e) => {
+        
+        console.log(e)
+//   initCodeMirror.setOption("value", '# version: python3')
+        setobj({
+            activeKey: e
+
+        })
+        // 在这里实例化对象
+        
+        
+        
     }
 
     const onEdit = (targetKey, action) => {
+        console.log(targetKey,action)
         if (action === "add") {
-        add()
+            add()
+   
         } else {
-        
-        remove(targetKey)
+
+            remove(targetKey)
         }
     }
-    
 
- 
+
+
     const add = () => {
 
-     console.log(obj.activeKey,obj.nameKey)
+        console.log(obj.activeKey, obj.nameKey, pysc.length)
         
+     
+
         let numberkey = Number(obj.activeKey)
         let nuMameKey = Number(obj.nameKey)
-        
+
+
+        const actIve=pysc.length?pysc.length+1:obj.activeKey
         
         // 新增的idkey
-        const activeKey = `${numberkey+=1}`;
+        const activeKey = `${numberkey += 1}`;
         // 新增的name
-        const activeName = `pythonscript${nuMameKey+=1}`;
+        const activeName = `pythonscript${actIve}`;
         const activeContent = ""
-      
+
         let newpysc = [...pysc]
-            
-          newpysc.push({
-           title: activeName, content:activeContent, key: activeKey
+
+        newpysc.push({
+            title: activeName, content: activeContent, key: activeKey
         })
         setScript(
-          newpysc
+            newpysc
         )
         setobj({
-             activeKey: activeKey,
-            nameKey:activeKey
-            
+            activeKey: activeKey,
+            nameKey: activeKey
+
         })
+  
+  
 
-
-    
     }
     const remove = (targetKey) => {
 
 
-   let oldpysc= pysc.filter(e=>e.key!==targetKey)
-  
- 
-        //   setScript(
-        //   oldpysc
-        //   )
+        let oldpysc = pysc.filter(e => e.key !== targetKey)
+         const targetIndex = pysc.findIndex((pane) => pane.key === targetKey);
+     if (oldpysc.length && targetKey === obj.activeKey) {
+         const { key } = oldpysc[targetIndex === oldpysc.length ? targetIndex - 1 : targetIndex];
+         
+       
+         setobj({
+         activeKey:key
+         });
+    }
+
+        setScript(oldpysc)
         
+        
+     
+
+
+
         // let oldacr = `${obj.activeKey - 1}`
         //     let oldnameKey =`${obj.nameKey-1}`
         // console.log(oldacr,oldnameKey)
-        
-//   setobj({
-//       activeKey: oldacr,
-//       nameKey:oldnameKey,
-//           })
+
+        //   setobj({
+        //       activeKey: oldacr,
+        //       nameKey:oldnameKey,
+        //           })
     }
-    
-    
-  
+
+
+
     return (
         <div className="newCodeMi">
-        <Tabs
+            <Tabs
                 type="editable-card"
                 activeKey={obj.activeKey}
                 onEdit={onEdit}
-                onTabClick={ tabHandle}
+                onChange={tabHandle}
             >
-                    {pysc.map(pane => (
-          <TabPane tab={pane.title} key={pane.key} closable={pane.closable}>
-                            <textarea id="newCode" ref={codeMirror}></textarea>            
-          </TabPane>
-        ))}
-                   </Tabs>
+                {pysc.map(pane => (
+                    <TabPane tab={pane.title} key={pane.key} >
+                        <textarea id="newCode" ref={codeMirror}></textarea>
+                    </TabPane>
+                ))}
+            </Tabs>
         </div>
-)
+    )
 
 
 }

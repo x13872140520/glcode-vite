@@ -2,7 +2,7 @@
  * @Author: error: git config user.name && git config user.email & please set dead value or install git
  * @Date: 2022-07-25 11:20:39
  * @LastEditors: error: git config user.name && git config user.email & please set dead value or install git
- * @LastEditTime: 2022-07-27 14:34:20
+ * @LastEditTime: 2022-07-29 10:07:35
  * @FilePath: /gajumakr/glcode-vite/src/server/pythonServer.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -11,6 +11,8 @@ import { createApi, retry } from '@reduxjs/toolkit/query/react'
 
 import Axios from 'axios'
 import { message } from 'antd';
+
+
 
 
 // 错误状态码
@@ -63,6 +65,15 @@ const HttpProxy = ({ baseUrl } = { baseUrl: '' }) => async ({ url, method, data,
 
 // Redux Toolkit
 
+const queryFn = (
+    args,
+    { signal, dispatch, getState },
+    extraOptions,
+    baseQuery
+) => {
+    // omitted
+}
+
 
 export const getListAPI = createApi({
     reducerPath: "getListAPI",
@@ -74,7 +85,7 @@ export const getListAPI = createApi({
     }),
     refetchOnFocus: true,       //切屏自动获取
     refetchOnReconnect: true,  //断网查询
-    tagTypes: ['Post', 'User'],  //根据这里面参数决定是否重新获取
+    tagTypes: ['Post', 'User'],  //根据这里面参数决定是否重新获取 给数据打上标记
     endpoints: (builder) => ({
 
         getListByName: builder.query({
@@ -98,7 +109,17 @@ export const getListAPI = createApi({
             // invalidatesTags: ['Post'],
             //  providesTags: ['Post'],
         }),
-
+        //这是一种复杂的请求方式
+        // getRandomUserPosts: builder.query({
+        //     async queryFn (_arg, _queryApi, _extraOptions, fetchWithBQ) {
+        //         // get a random user
+        //         const randomResult = await fetchWithBQ('users/random')
+        //         if (randomResult.error) return { error: randomResult.error }
+        //         const user = randomResult.data
+        //         const result = await fetchWithBQ(`user/${user.id}/posts`)
+        //         return result.data ? { data: result.data } : { error: result.error }
+        //     },
+        // }),
 
     })
 
